@@ -21,10 +21,8 @@ interface SummaryDialogProps {
 }
 
 export default function SummaryDialog({ open, onOpenChange, products, totalProfit }: SummaryDialogProps) {
-  // Filter products that were sold during this session
   const soldProducts = products.filter((product) => product.sold > 0)
 
-  // Get all sales history entries from all products
   const allSalesHistory = soldProducts.flatMap((product) =>
     product.salesHistory.map((sale) => ({
       productName: product.name,
@@ -35,14 +33,13 @@ export default function SummaryDialog({ open, onOpenChange, products, totalProfi
     })),
   )
 
-  // Sort sales history by timestamp (most recent first)
   const sortedSalesHistory = [...allSalesHistory].sort(
     (a, b) => new Date(b.timestamp).getTime() - new Date(a.timestamp).getTime(),
   )
 
   return (
     <Dialog open={open} onOpenChange={onOpenChange}>
-      <DialogContent className="sm:max-w-[700px]">
+      <DialogContent className="sm:max-w-[700px] max-h-[90vh] overflow-y-auto">
         <DialogHeader>
           <DialogTitle className="text-xl">Session Summary</DialogTitle>
           <DialogDescription>Review your sales for this session</DialogDescription>
@@ -60,13 +57,11 @@ export default function SummaryDialog({ open, onOpenChange, products, totalProfi
                 <TabsTrigger value="history">Sales History</TabsTrigger>
               </TabsList>
 
-              <TabsContent
-                value="summary"
-                className="space-y-4 mt-4 overflow-y-auto max-h-80" // max-h-80 va overflow-y-auto qo'shildi
-              >
+              {/* Summary Tab */}
+              <TabsContent value="summary" className="space-y-4 mt-4 max-h-[400px] overflow-y-auto">
                 <h3 className="font-medium">Products Sold:</h3>
-                <div className="border rounded-md overflow-hidden">
-                  <table className="w-full">
+                <div className="border rounded-md overflow-x-auto">
+                  <table className="w-full min-w-[500px]">
                     <thead className="bg-muted">
                       <tr>
                         <th className="text-left p-3">Product</th>
@@ -99,10 +94,11 @@ export default function SummaryDialog({ open, onOpenChange, products, totalProfi
                 </div>
               </TabsContent>
 
-              <TabsContent value="history" className="space-y-4 mt-4">
+              {/* Sales History Tab */}
+              <TabsContent value="history" className="space-y-4 mt-4 max-h-[400px] overflow-y-auto">
                 <h3 className="font-medium">Sales Timeline:</h3>
-                <div className="border rounded-md overflow-hidden">
-                  <table className="w-full">
+                <div className="border rounded-md overflow-x-auto">
+                  <table className="w-full min-w-[600px]">
                     <thead className="bg-muted">
                       <tr>
                         <th className="text-left p-3">Time</th>
