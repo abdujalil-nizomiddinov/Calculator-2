@@ -60,7 +60,7 @@ export default function SummaryDialog({ open, onOpenChange, products, totalProfi
                 <TabsTrigger value="history">Sales History</TabsTrigger>
               </TabsList>
 
-              <TabsContent value="summary" className="space-y-4 mt-4">
+              <TabsContent value="summary" className="space-y-4 mt-4 overflow-y-auto max-h-80">
                 <h3 className="font-medium">Products Sold:</h3>
                 <div className="border rounded-md overflow-hidden">
                   <table className="w-full">
@@ -96,7 +96,7 @@ export default function SummaryDialog({ open, onOpenChange, products, totalProfi
                 </div>
               </TabsContent>
 
-              <TabsContent value="history" className="space-y-4 mt-4">
+              <TabsContent value="history" className="space-y-4 mt-4 overflow-y-auto max-h-80">
                 <h3 className="font-medium">Sales Timeline:</h3>
                 <div className="border rounded-md overflow-hidden">
                   <table className="w-full">
