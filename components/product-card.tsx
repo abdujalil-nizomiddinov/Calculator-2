@@ -49,7 +49,7 @@ export default function ProductCard({ product, onSell, onEdit, onDelete, isSessi
   return (
     <Card className="overflow-hidden">
       <div className="relative h-48 bg-gray-100">
-        <Image src="/shop.png?height=200&width=400" alt={product.name} fill className="object-cover" />
+        <Image src="/placeholder.svg?height=200&width=400" alt={product.name} fill className="object-cover" />
       </div>
       <CardContent className="p-4">
         <div className="flex justify-between items-start mb-2">
